@@ -77,7 +77,7 @@ C {lab_wire.sym} 1060 -1050 0 0 {name=p3 sig_type=std_logic lab=Vin_pos}
 C {lab_wire.sym} 1060 -990 0 0 {name=p4 sig_type=std_logic lab=Vin_neg}
 C {lab_wire.sym} 1260 -820 0 1 {name=p7 sig_type=std_logic lab=Vout_pos}
 C {lab_wire.sym} 1260 -580 2 0 {name=p8 sig_type=std_logic lab=Vout_neg}
-C {chipathon-2026-fdda/src/fdda.sym} 1300 -1020 0 0 {name=x1}
+C {chipathon-2026-fdda/src/fdda_top.sym} 1300 -1020 0 0 {name=x1}
 C {code_shown.sym} 60 -1010 0 0 {name=MODELS1 only_toplevel=true
 format="tcleval( @value )"
 value="
