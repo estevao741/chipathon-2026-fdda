@@ -26,9 +26,6 @@ N 1400 -910 1400 -900 {lab=Vout_neg}
 N 1120 -910 1120 -900 {lab=Vout_neg}
 N 1400 -1240 1400 -1220 {lab=Vin_neg}
 N 1400 -1420 1400 -1400 {lab=Vin_pos}
-N 1400 -1320 1400 -1300 {lab=#net1}
-N 1400 -1340 1400 -1320 {lab=#net1}
-N 1360 -1320 1400 -1320 {lab=#net1}
 N 1260 -1320 1300 -1320 {lab=0}
 N 1260 -1320 1260 -1300 {lab=0}
 N 1180 -700 1180 -680 {lab=0}
@@ -37,6 +34,16 @@ N 1260 -720 1260 -700 {lab=0}
 N 1260 -700 1260 -680 {lab=0}
 N 1260 -820 1260 -780 {lab=Vout_pos}
 N 1260 -620 1260 -580 {lab=Vout_neg}
+N 1360 -1490 1360 -1460 {lab=0}
+N 1280 -1490 1280 -1470 {lab=0}
+N 1280 -1470 1360 -1470 {lab=0}
+N 1280 -1570 1350 -1570 {lab=Vsine}
+N 1360 -1570 1360 -1550 {lab=Vsine}
+N 1350 -1570 1360 -1570 {lab=Vsine}
+N 1280 -1570 1280 -1550 {lab=Vsine}
+N 1360 -1320 1400 -1320 {lab=#net1}
+N 1400 -1320 1400 -1300 {lab=#net1}
+N 1400 -1340 1400 -1320 {lab=#net1}
 C {title-3.sym} 0 0 0 0 {name=F1
 title="FDDA with Native MOS CMFB"
 author="UFJF On Chip"
@@ -90,12 +97,14 @@ C {code_shown.sym} 60 -790 0 0 {name=NGSPICE1 only_toplevel=true
 value="
 .options savecurrents
 .global VDD_3V3
+.param inputStart=0.2
 .param inputPeak=1.2
+.param T_ramp=100u
 .param inputOffset=1.65
 
 .control
   save all
-  tran 1n 10u
+  tran 5n 100u
 
   write sim_tran_sine.raw
 
@@ -104,6 +113,18 @@ value="
 .endc
 "}
 C {gnd.sym} 1260 -1300 0 0 {name=l4 lab=0}
-C {vsource.sym} 1400 -1370 0 0 {name=V3 value="sin(0 \{inputPeak\} 500k 2u)" savecurrent=true}
 C {vsource.sym} 1330 -1320 1 0 {name=V4 value=\{inputOffset\} savecurrent=true}
-C {vsource.sym} 1400 -1270 0 0 {name=V1 value="sin(0 \{inputPeak\} 500k 2u)" savecurrent=true}
+C {vsource.sym} 1360 -1520 0 0 {name=V7 value="sin(0 1 1Meg 2u)" savecurrent=true
+}
+C {gnd.sym} 1360 -1460 0 0 {name=l2 lab=0}
+C {capa.sym} 1280 -1520 0 0 {name=C2
+m=1
+value=16p
+footprint=1206
+device="ceramic capacitor"
+}
+C {lab_wire.sym} 1310 -1570 0 1 {name=p6 sig_type=std_logic lab=Vsine}
+C {bsource.sym} 1400 -1370 0 0 {name=B1 VAR=V FUNC="V(Vsine) * min(inputPeak, inputStart + (inputPeak - inputStart) * (time/T_ramp))"
+}
+C {bsource.sym} 1400 -1270 0 0 {name=B2 VAR=V FUNC="V(Vsine) * min(inputPeak, inputStart + (inputPeak - inputStart) * (time/T_ramp))"
+}

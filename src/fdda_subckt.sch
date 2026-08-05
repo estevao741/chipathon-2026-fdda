@@ -17,7 +17,6 @@ N 1560 -1500 1560 -1300 {lab=#net3}
 N 1400 -1240 1400 -1220 {lab=#net4}
 N 1400 -1220 1560 -1220 {lab=#net4}
 N 1560 -1240 1560 -1220 {lab=#net4}
-N 350 -1430 350 -1390 {lab=Gbias_20u_p}
 N 640 -1680 740 -1680 {lab=VDD_3V3}
 N 640 -1190 640 -940 {lab=GND}
 N 740 -1110 740 -940 {lab=GND}
@@ -86,14 +85,12 @@ N 940 -570 940 -540 {lab=#net10}
 N 820 -540 940 -540 {lab=#net10}
 N 820 -570 820 -540 {lab=#net10}
 N 1480 -1020 1480 -940 {lab=GND}
-N 350 -1310 410 -1310 {lab=Gbias_20u_n}
-N 390 -1260 410 -1260 {lab=Gbias_20u_n}
+N 390 -1180 410 -1180 {lab=Gbias_20u_n}
 N 1080 -1050 1100 -1050 {lab=Gbias_20u_n}
 N 1100 -1100 1100 -1050 {lab=Gbias_20u_n}
 N 1100 -1100 1420 -1100 {lab=Gbias_20u_n}
 N 1420 -1100 1420 -1050 {lab=Gbias_20u_n}
 N 1420 -1050 1440 -1050 {lab=Gbias_20u_n}
-N 390 -1460 410 -1460 {lab=Gbias_20u_p}
 N 1040 -1020 1040 -940 {lab=GND}
 N 1600 -1530 1620 -1530 {lab=Gbias_20u_p}
 N 1000 -1550 1040 -1550 {lab=VDD_3V3}
@@ -109,7 +106,7 @@ N 1840 -1140 1870 -1140 {lab=GND}
 N 1780 -1190 1810 -1190 {lab=GND}
 N 1940 -1220 1970 -1220 {lab=GND}
 N 1840 -1480 1870 -1480 {lab=GND}
-N 320 -1260 350 -1260 {lab=GND}
+N 320 -1180 350 -1180 {lab=GND}
 N 1010 -1050 1040 -1050 {lab=GND}
 N 710 -1140 740 -1140 {lab=GND}
 N 610 -1220 640 -1220 {lab=GND}
@@ -222,8 +219,6 @@ N 1200 -630 1200 -550 {lab=Vcm}
 N 1200 -590 1240 -590 {lab=Vcm}
 N 1200 -780 1200 -690 {lab=VDD_3V3}
 N 1310 -590 1310 -350 {lab=GND}
-N 410 -1460 410 -1410 {lab=Gbias_20u_p}
-N 350 -1410 410 -1410 {lab=Gbias_20u_p}
 N 810 -1460 810 -1440 {lab=VDD_3V3}
 N 810 -1460 840 -1460 {lab=VDD_3V3}
 N 840 -1680 840 -1460 {lab=VDD_3V3}
@@ -262,21 +257,29 @@ N 1780 -1340 1780 -1320 {lab=VDD_3V3}
 N 1780 -1360 1780 -1340 {lab=VDD_3V3}
 N 1940 -1700 1940 -1680 {lab=VDD_3V3}
 N 640 -1700 640 -1680 {lab=VDD_3V3}
-N 410 -1310 410 -1260 {lab=Gbias_20u_n}
+N 410 -1230 410 -1180 {lab=Gbias_20u_n}
 N 320 -1530 320 -1460 {lab=VDD_3V3}
 N 350 -1530 350 -1490 {lab=VDD_3V3}
-N 350 -1230 350 -1190 {lab=GND}
-N 320 -1190 350 -1190 {lab=GND}
-N 320 -1260 320 -1190 {lab=GND}
-N 350 -1190 350 -1170 {lab=GND}
-N 350 -1330 350 -1290 {lab=Gbias_20u_n}
+N 350 -1150 350 -1110 {lab=GND}
+N 320 -1110 350 -1110 {lab=GND}
+N 320 -1180 320 -1110 {lab=GND}
+N 350 -1110 350 -1090 {lab=GND}
+N 350 -1250 350 -1210 {lab=Gbias_20u_n}
 N 610 -940 640 -940 {lab=GND}
 N 610 -1680 640 -1680 {lab=VDD_3V3}
+N 320 -1280 330 -1280 {lab=VDD_3V3}
+N 320 -1460 320 -1280 {lab=VDD_3V3}
+N 390 -1460 420 -1460 {lab=Gbias_20u_p}
+N 420 -1460 420 -1410 {lab=Gbias_20u_p}
+N 350 -1410 420 -1410 {lab=Gbias_20u_p}
+N 350 -1410 350 -1390 {lab=Gbias_20u_p}
+N 350 -1430 350 -1390 {lab=Gbias_20u_p}
+N 350 -1230 410 -1230 {lab=Gbias_20u_n}
+N 350 -1330 350 -1310 {lab=#net18}
 C {ipin.sym} 900 -1270 0 0 {name=p1 lab=Vpn}
 C {ipin.sym} 1180 -1270 0 1 {name=p2 lab=Vpp}
 C {ipin.sym} 1340 -1270 0 0 {name=p3 lab=Vnp}
 C {ipin.sym} 1620 -1270 0 1 {name=p4 lab=Vnn}
-C {isource.sym} 350 -1360 0 0 {name=I0 value=20u}
 C {opin.sym} 1940 -1420 0 0 {name=p11 lab=Vop}
 C {opin.sym} 640 -1420 0 1 {name=p13 lab=Von}
 C {symbols/nfet_03v3.sym} 940 -1270 0 0 {name=M28
@@ -462,7 +465,7 @@ sa=0 sb=0 sd=0
 model=nfet_03v3
 spiceprefix=X
 }
-C {symbols/nfet_03v3.sym} 370 -1260 0 1 {name=M3
+C {symbols/nfet_03v3.sym} 370 -1180 0 1 {name=M3
 L=0.7u
 W=7.0u
 nf=1
@@ -838,10 +841,19 @@ C {vdd.sym} 1780 -1360 0 0 {name=l4 lab=VDD_3V3}
 C {vdd.sym} 350 -1530 0 0 {name=l3 lab=VDD_3V3}
 C {lab_wire.sym} 1500 -590 0 0 {name=p12 sig_type=std_logic lab=Vop}
 C {lab_wire.sym} 1840 -590 0 1 {name=p14 sig_type=std_logic lab=Von}
-C {gnd.sym} 350 -1170 0 0 {name=l10 lab=GND}
-C {lab_wire.sym} 410 -1310 0 1 {name=p17 sig_type=std_logic lab=Gbias_20u_n}
-C {lab_wire.sym} 410 -1460 0 1 {name=p18 sig_type=std_logic lab=Gbias_20u_p}
+C {gnd.sym} 350 -1090 0 0 {name=l10 lab=GND}
+C {lab_wire.sym} 410 -1230 0 1 {name=p17 sig_type=std_logic lab=Gbias_20u_n}
+C {lab_wire.sym} 420 -1460 0 1 {name=p18 sig_type=std_logic lab=Gbias_20u_p}
 C {lab_wire.sym} 1180 -1590 0 1 {name=p20 sig_type=std_logic lab=Gbias_20u_p}
 C {lab_wire.sym} 1100 -1100 0 1 {name=p21 sig_type=std_logic lab=Gbias_20u_n}
 C {lab_wire.sym} 1370 -400 0 1 {name=p10 sig_type=std_logic lab=Gbias_20u_n}
 C {lab_wire.sym} 790 -350 0 0 {name=p22 sig_type=std_logic lab=Gbias_20u_n}
+C {symbols/ppolyf_u_3k.sym} 350 -1280 0 0 {name=R6
+W=2e-6
+L=48.2e-6
+model=ppolyf_u_3k
+spiceprefix=X
+m=1
+}
+C {ammeter.sym} 350 -1360 0 0 {name=Vbias_gen_20u savecurrent=true spice_ignore=0
+}
