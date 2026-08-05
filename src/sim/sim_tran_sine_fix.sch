@@ -90,14 +90,14 @@ C {code_shown.sym} 60 -790 0 0 {name=NGSPICE1 only_toplevel=true
 value="
 .options savecurrents
 .global VDD_3V3
-.param inputPeak=1.2
+.param inputPeak=1.0
 .param inputOffset=1.65
 
 .control
   save all
   tran 1n 10u
 
-  write sim_tran_sine.raw
+  write sim_tran_sine_fix.raw
 
   echo 'Circuit data:' > /foss/designs/simulation_log.txt
   show all >> /foss/designs/simulation_log.txt
