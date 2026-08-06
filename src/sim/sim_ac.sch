@@ -101,7 +101,7 @@ footprint=1206
 device="ceramic capacitor"}
 C {gnd.sym} 1980 -690 0 0 {name=l14 lab=GND}
 C {lab_wire.sym} 1980 -810 0 1 {name=p23 sig_type=std_logic lab=Vop}
-C {chipathon-2026-fdda/src/fdda_subckt.sym} 1270 -800 0 0 {name=x1}
+C {chipathon-2026-fdda/src/fdda_top.sym} 1270 -800 0 0 {name=x1}
 C {lab_wire.sym} 1310 -770 0 1 {name=p1 sig_type=std_logic lab=Von}
 C {lab_wire.sym} 1310 -830 0 1 {name=p2 sig_type=std_logic lab=Vop}
 C {lab_wire.sym} 1120 -770 0 0 {name=p3 sig_type=std_logic lab=Vnn}
