@@ -1,114 +1,29 @@
-# chipathon-2026-gf180mcu-padring
+# chipathon-2026-fdda
 
-Chipathon 2026 workshop fork of the wafer-space `gf180mcu-project-template`.
-Adds a new LibreLane slot, `workshop`, that mirrors Juan Moya's
-standalone workshop padring as a native LibreLane slot definition so
-participants can take the flow all the way to GDS with the stock
-template Makefile.
+Chipathon 2026 workshop fork with the data for the A64 team: `UFJF On Chip`'s project.  
+Our project consists of a fully differential differences amplifier implemented using the GF180mcuD PDK. Basically, the
+chip implements a modified version of the classic operational amplifier that works with two differential pairs as inputs
+and one output differential pair.  
+The design was specifically made to be used as a buffer for differential mode gm-C filter outputs, so that these
+structures can drive higher current loads with relative ease.
 
-No PRs are planned against upstream; all chipathon-specific material
-stays in this fork.
+## Useful links
 
-## Credits
+Here are some useful links you might want to check out.
 
-This repository is a **derivation**. The template, Nix flake, and
-LibreLane flow are the work of Leo Moser and the wafer-space
-contributors; the workshop pad layout is a port of Juan Moya's
-`padring_gf180`. Both are Apache-2.0.
+- [sscs-chipathon-2026](https://github.com/sscs-ose/sscs-chipathon-2026) repository
+- [Proposal Slide](https://docs.google.com/presentation/d/1SrgzlZQoD4GERqboP4jFmr87P4XhPpDHspvZYPBxS9Q/edit?usp=sharing)
+  where you can check out more about what we hope to achieve and other project details
+- [Schematic Review Slide](https://docs.google.com/presentation/d/1bE2WZXyA_TOMbyWNPdfg7idR8Ls4OpYADRtcgYTS4Wk/edit?usp=sharing) where you can see schematic and implementation details, alongside simulation results
+- [Layout Review Slide]() (not ready)
+- [Live simulation results](https://drive.google.com/drive/u/4/folders/1HzAYb7wcbby9eQJx9-vkpNNQgJukaQjd) where you can
+  interact with the simulation data through your browser (thanks to the [Plotly](https://plotly.com) python library)
+- [Pin Requirement](https://docs.google.com/spreadsheets/d/1nqpqJ7nMx3-f8CdgZ5sQ4Laq3Y2I0ba98G__MgAeP9c/edit?usp=sharing) for the chip
+- [Progress tracker](https://docs.google.com/spreadsheets/d/1R81VW354kSfG4iEKb0roXoxiEQ3XcKQInUdzXRqEcuY/edit?usp=sharing) for the project
 
-- Upstream template — https://github.com/wafer-space/gf180mcu-project-template
-  pinned at commit `8bd0f6ff28947bf222c5288343f8f3ee1fc04632`
-  (`chore: update flake to librelane 3.0`, 2026-03-26).
-- Workshop pad layout — https://github.com/JuanMoya/padring_gf180
-  (`Workshop_CASS/padring/workshop_padring.cfg`).
-
-See `CREDITS.md` for the per-artifact attribution and `NOTICE` for
-the formal Apache-2.0 notice.
-
-## What this fork changes vs upstream
-
-Exactly 6 files (one commit on top of pinned upstream):
-
-| File | Change |
-|------|--------|
-| `src/slot_defines.svh` | add `SLOT_WORKSHOP` block (NUM_INPUT=1, BIDIR=20, ANALOG=60, 4/4 DVDD/DVSS) |
-| `src/chip_core.sv` | replace example counter with a 20-bit counter driving the 20 bidir pads; analog pads float through |
-| `librelane/slots/slot_workshop.yaml` | **new** slot (DIE 2935x2935 um, CORE 2051x2051 um, VERILOG_DEFINES=SLOT_WORKSHOP) |
-| `librelane/config.yaml` | drop SRAM `MACROS` entry and PDN macro connections - not used in this slot |
-| `librelane/pdn_cfg.tcl` | drop SRAM-specific `define_pdn_grid` blocks |
-| `Makefile` | `AVAILABLE_SLOTS += workshop` |
-
-`git log upstream/main..main` shows the single derivation commit;
-`git diff upstream/main..main` shows the delta.
-
-## Workshop slot - pad map at a glance
-
-- Die: **2935 x 2935 um** (same as Juan Moya's reference).
-- **60 x analog** (`gf180mcu_fd_io__asig_5p0`)
-- **20 x bidir** (`gf180mcu_fd_io__bi_24t`)
-- **4 x DVDD** + **4 x DVSS** (`gf180mcu_ws_io__dvdd` / `__dvss`)
-- **clk_pad** (`gf180mcu_fd_io__in_s`), **rst_n_pad** (`gf180mcu_fd_io__in_c`)
-- **1 x input_pad** - Yosys zero-width-vector workaround; chipathon
-  participants can ignore it (documented in `docs/workshop-slot-spec.md`).
-- **4 x corner** (`gf180mcu_fd_io__cor`, inserted by LibreLane).
-
-Pad ordering in `PAD_NORTH` and `PAD_WEST` is **reversed** relative to
-Juan Moya's standalone `workshop_padring.cfg` because LibreLane reads
-pad lists clockwise from the SW corner. Full pad-by-pad mapping in
-`docs/workshop-slot-spec.md`.
-
-## Quickstart
-
-### Build the workshop slot (native, nix-shell)
-
-```bash
-git clone <this-repo-url> chipathon-2026-gf180mcu-padring
-cd chipathon-2026-gf180mcu-padring
-nix-shell               # provides LibreLane 3.0.0
-make clone-pdk          # clones wafer-space/gf180mcu @ 1.8.0
-SLOT=workshop make librelane
-```
-
-Runtime on a modern laptop: **~2h 15m** for the full signoff run
-(Magic DRC + KLayout DRC + LVS + antenna + STA across 3 corners).
-
-Final artifacts land in `final/`:
-- `final/gds/chip_top.gds` (~85 MB)
-- `final/metrics.csv` (signoff metrics)
-- `final/*.log` (per-stage logs)
-
-### Inspect a built GDS (Docker, hpretl/iic-osic-tools)
-
-`scripts/run_docker_iic.sh` spawns the iic-osic-tools container with
-this repo mounted; inside the container run `klayout final/gds/chip_top.gds`
-or `magic -T .../gf180mcuD.magicrc ...`.
-
-See `docs/reproducing-native.md` and `docs/reproducing-docker.md` for
-the detailed walkthroughs.
-
-### Use the workshop slot for your own RTL
-
-Swap `src/chip_core.sv` with your design, keeping the port list
-(NUM_INPUT=1, NUM_BIDIR=20, NUM_ANALOG=60, clk, rst_n), and re-run
-`SLOT=workshop make librelane`. Padring stays fixed.
-
-## Verification
-
-The repository was validated **end-to-end** against a known-good
-reference build. To re-run the pragmatic check (byte-compare the
-six tracked files against the reference tree):
-
-```bash
-scripts/verify_workshop_slot.sh /path/to/reference/template
-```
-
-The reference build (DRC/LVS/antenna/STA signoff on 2026-04-23 with
-LibreLane 3.0 + wafer-space PDK 1.8.0) is the source of truth for
-"clean". As long as the fork's six files byte-match that reference,
-a fresh build on a compatible host will reproduce the same result.
-
-If you do not have the reference tree, the repo itself is the ground
-truth - this fork *is* those six files.
+*Note on the live simulation results*: you might need to download the files and double click them to open those on your
+browser. They are plain HTML files generated by the [Plotly](https://plotly.com) python library as said before, so you
+can freely verify the sources as needed if you want to, as they include scripts to make the page functional.
 
 ## Repository layout
 
@@ -141,12 +56,23 @@ truth - this fork *is* those six files.
 |-- src/
 |   |-- chip_top.sv                 # upstream, unchanged
 |   |-- chip_core.sv                # patched (counter->bidir)
-|   `-- slot_defines.svh            # patched (SLOT_WORKSHOP)
+|   |-- fdda_top.sch                # Chip main schematic
+|   |-- fdda_top.sym                # Schematic symbol
+|   |-- slot_defines.svh            # patched (SLOT_WORKSHOP)
+|   |-- sim/
+|   |   |-- sim_ac.sch              # AC chip simulation
+|   |   |-- sim_tran_sine.sch       # Sine wave input simulation
+|   |   |-- sim_tran_sine_fix.sch   # Fixed peak-to-peak input sine wave simulation
+|   |   `-- sim_tran_square.sch     # Square wave response simulation
+|   `-- gds/
+|       `-- fdda_top.gds            # Main .gds file for the chip
 |-- Makefile                        # patched (AVAILABLE_SLOTS += workshop)
 `-- (upstream infra: flake.nix, gf180mcu/, ip/, cocotb/, scripts/, ...)
 ```
 
 ## License
+
+*Note*: this repository is based on [Mauricio-xx/chipathon-2026-gf180mcu-padring](https://github.com/Mauricio-xx/chipathon-2026-gf180mcu-padring) as required by the [sscs-chipathon-2026](https://github.com/sscs-ose/sscs-chipathon-2026) guidelines.
 
 Apache-2.0, inherited from upstream. See `LICENSE` for the full text,
 `NOTICE` for attribution of third-party material, and `AUTHORS.md`
