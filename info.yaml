@@ -18,3 +18,34 @@ project:
   description: "A simples FDDA project intended for use in buffers and gm-C filters."  # Short one-line description
 
   lvs_config: "./lvs_config.json"
+
+pins:
+# Design block: D - 5 pins on the bottom and 5 pins on the left
+# Pins defined in clockwise direction
+# Layout facilitates the buffer connection
+
+# Bottom side
+  - name: VDD_3v3
+    io_type: power
+  - name: Vnn
+    io_type: analog
+    secondary_esd: true
+  - name: Vnp
+    io_type: analog
+    secondary_esd: true
+  - name: Vpp
+    io_type: analog
+    secondary_esd: true
+  - name: Vpn
+    io_type: analog
+    secondary_esd: true
+
+# Left side
+  - name: GND
+    io_type: ground  # note: due to a common ground connection, ground pads are generally not needed.
+  - name: Von
+    io_type: analog
+    secondary_esd: true
+  - name: Vop
+    io_type: analog
+    secondary_esd: true
