@@ -21,7 +21,7 @@
 		""
 	],
 	"LVS_SPICE_FILES": [
-		""
+		"$UPRJ_ROOT/src/gds/$TOP_LAYOUT.spice"
 	],
 	"LVS_VERILOG_FILES": [
 		""
