@@ -556,7 +556,7 @@ spiceprefix=X
 }
 C {symbols/nfet_03v3.sym} 1920 -1220 0 0 {name=M19
 L=0.7u
-W=14u
+W=7u
 nf=1
 m=4
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -598,7 +598,7 @@ spiceprefix=X
 }
 C {symbols/nfet_03v3.sym} 660 -1220 0 1 {name=M8
 L=0.7u
-W=14u
+W=7u
 nf=1
 m=4
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
