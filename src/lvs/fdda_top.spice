@@ -1,95 +1,58 @@
-.subckt fdda_top Vpn Vpp Vnp Vnn Vop Von Gbias_20u_n Gbias_20u_p 1a 2a 3a 3b 1b 2b 5 Bias_aux CM Vcmfb CM_pos 7 8 CM_neg 6 VDD_3v3 GND
-*.PININFO Vpn:I Vpp:I Vnp:I Vnn:I Vop:O Von:O Gbias_20u_n:O Gbias_20u_p:O 1a:O 2a:O 3a:O 3b:O 1b:O 2b:O 5:O Bias_aux:O CM:O
-*+ Vcmfb:O CM_pos:O 7:O 8:O CM_neg:O 6:O
-M28 1a Vpn 3a GND nfet_03v3 L=0.7u W=14u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=4
-M29 1a Gbias_20u_p VDD_3V3 VDD_3V3 pfet_03v3 L=0.7u W=14u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=2
-M31 Gbias_20u_p Gbias_20u_p VDD_3V3 VDD_3V3 pfet_03v3 L=0.7u W=14u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-M5 Von 1a VDD_3V3 VDD_3V3 pfet_03v3 L=0.7u W=14u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=8
-M6 1a Vcmfb VDD_3V3 VDD_3V3 pfet_03v3 L=0.7u W=14u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=2
-M4 1b Gbias_20u_p VDD_3V3 VDD_3V3 pfet_03v3 L=0.7u W=14u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=2
-M12 1b Vcmfb VDD_3V3 VDD_3V3 pfet_03v3 L=0.7u W=14u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=2
-M15 Vop 1b VDD_3V3 VDD_3V3 pfet_03v3 L=0.7u W=14u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=8
-M16 6 6 VDD_3V3 VDD_3V3 pfet_03v3 L=0.70u W=14.0u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-M18 Vcmfb 6 VDD_3V3 VDD_3V3 pfet_03v3 L=0.70u W=14.0u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-M1 1b Vpp 3a GND nfet_03v3 L=0.7u W=14u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=4
-M2 1a Vnp 3b GND nfet_03v3 L=0.7u W=14u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=4
-M7 1b Vnn 3b GND nfet_03v3 L=0.7u W=14u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=4
-M3 Gbias_20u_n Gbias_20u_n GND GND nfet_03v3 L=0.7u W=7.0u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-M10 3a Gbias_20u_n GND GND nfet_03v3 L=0.70u W=7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=4
-M11 3b Gbias_20u_n GND GND nfet_03v3 L=0.7u W=7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=4
-M19 Vop 2b GND GND nfet_03v3 L=0.7u W=7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=4
-M20 net1 Gbias_20u_n GND GND nfet_03v3 L=0.70u W=7.0u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-M22 6 CM_pos net1 GND nfet_03v3 L=0.70u W=7.0u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=2
-M8 Von 2a GND GND nfet_03v3 L=0.7u W=7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=4
-M23 Vcmfb CM_neg net1 GND nfet_03v3 L=0.70u W=7.0u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=2
-M24 VDD_3V3 Vop 7 GND nfet_06v0_nvt L=1.80u W=8u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-M25 VDD_3V3 Von 8 GND nfet_06v0_nvt L=1.80u W=8u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-M26 VDD_3V3 CM CM_pos GND nfet_06v0_nvt L=1.80u W=8u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-R4 Vop net3 GND ppolyf_u_1k r_width=2e-6 r_length=1.85e-6
-R1 net2 Von GND ppolyf_u_1k r_width=2e-6 r_length=1.85e-6
-R2 net8 CM_neg GND ppolyf_u_1k r_width=1e-6 r_length=50e-6
-R3 net9 CM_neg GND ppolyf_u_1k r_width=1e-6 r_length=50e-6
-R5 net10 GND GND ppolyf_u_1k r_width=1e-6 r_length=50e-6
-C3 net3 1b cap_mim_2f0fF c_width=60e-6 c_length=66e-6 m=2
-C2 1a net2 cap_mim_2f0fF c_width=60e-6 c_length=66e-6 m=2
-M14 VDD_3V3 1b 2b GND nfet_03v3 L=1u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-M17 2b Bias_aux GND GND nfet_03v3 L=1u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-M27 5 5 Bias_aux GND nfet_03v3 L=1u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-M21 5 5 VDD_3V3 VDD_3V3 pfet_03v3 L=1u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-M9 GND Bias_aux 2a GND nfet_03v3 L=1u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-M13 2a 1a VDD_3V3 GND nfet_03v3 L=1u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-M30 Bias_aux Gbias_20u_n GND GND nfet_03v3 L=0.7u W=7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-M34 CM_pos Gbias_20u_n GND GND nfet_03v3 L=0.70u W=3.3u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-M36 7 Gbias_20u_n GND GND nfet_03v3 L=0.70u W=3.3u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-M37 8 Gbias_20u_n GND GND nfet_03v3 L=0.70u W=3.3u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-R6 net7 Gbias_20u_p GND ppolyf_u_1k r_width=2e-6 r_length=29.2e-6
-R12 net6 net7 GND ppolyf_u_1k r_width=2e-6 r_length=29.2e-6
-R13 net5 net6 GND ppolyf_u_1k r_width=2e-6 r_length=29.2e-6
-R14 net4 net5 GND ppolyf_u_1k r_width=2e-6 r_length=29.2e-6
-R15 Gbias_20u_n net4 GND ppolyf_u_1k r_width=2e-6 r_length=29.2e-6
-R10 7 net8 GND ppolyf_u_1k r_width=1e-6 r_length=50e-6
-R11 8 net9 GND ppolyf_u_1k r_width=1e-6 r_length=50e-6
-R9 CM net10 GND ppolyf_u_1k r_width=1e-6 r_length=50e-6
-M35 CM CM VDD_3V3 VDD_3V3 pfet_03v3 L=2.0u W=3.2u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.subckt fdda_top Von Vop Vnp Vnn Vpp Vpn GND VDD_3v3
+*.PININFO Vpn:I Vpp:I Vnp:I Vnn:I Vop:O Von:O
+M28 1a Vpn 3a GND nfet_03v3 L=0.7u W=14u nf=1 m=4
+M29 1a Gbias_20u_p VDD_3V3 VDD_3V3 pfet_03v3 L=0.7u W=14u nf=1 m=2
+M31 Gbias_20u_p Gbias_20u_p VDD_3V3 VDD_3V3 pfet_03v3 L=0.7u W=14u nf=1
+M5 Von 1a VDD_3V3 VDD_3V3 pfet_03v3 L=0.7u W=14u nf=1 m=8
+M6 1a Vcmfb VDD_3V3 VDD_3V3 pfet_03v3 L=0.7u W=14u nf=1 m=2
+M4 1b Gbias_20u_p VDD_3V3 VDD_3V3 pfet_03v3 L=0.7u W=14u nf=1 m=2
+M12 1b Vcmfb VDD_3V3 VDD_3V3 pfet_03v3 L=0.7u W=14u nf=1 m=2
+M15 Vop 1b VDD_3V3 VDD_3V3 pfet_03v3 L=0.7u W=14u nf=1 m=8
+M16 6 6 VDD_3V3 VDD_3V3 pfet_03v3 L=0.70u W=14.0u nf=1
+M18 Vcmfb 6 VDD_3V3 VDD_3V3 pfet_03v3 L=0.70u W=14.0u nf=1
+M1 1b Vpp 3a GND nfet_03v3 L=0.7u W=14u nf=1 m=4
+M2 1a Vnp 3b GND nfet_03v3 L=0.7u W=14u nf=1 m=4
+M7 1b Vnn 3b GND nfet_03v3 L=0.7u W=14u nf=1 m=4
+M3 Gbias_20u_n Gbias_20u_n GND GND nfet_03v3 L=0.7u W=7.0u nf=1
+M10 3a Gbias_20u_n GND GND nfet_03v3 L=0.70u W=7u nf=1 m=4
+M11 3b Gbias_20u_n GND GND nfet_03v3 L=0.7u W=7u nf=1 m=4
+M19 Vop 2b GND GND nfet_03v3 L=0.7u W=7u nf=1 m=4
+M20 net2 Gbias_20u_n GND GND nfet_03v3 L=0.70u W=7.0u nf=1
+M22 6 CM_pos net2 GND nfet_03v3 L=0.70u W=7.0u nf=1 m=2
+M8 Von 2a GND GND nfet_03v3 L=0.7u W=7u nf=1 m=4
+M23 Vcmfb CM_neg net2 GND nfet_03v3 L=0.70u W=7.0u nf=1 m=2
+M24 VDD_3V3 Vop 7 GND nfet_06v0_nvt L=1.80u W=8u nf=1
+M25 VDD_3V3 Von 8 GND nfet_06v0_nvt L=1.80u W=8u nf=1
+M26 VDD_3V3 CM CM_pos GND nfet_06v0_nvt L=1.80u W=8u nf=1
+R4 Vop net4 GND ppolyf_u_1k r_width=2e-6 r_length=1.85e-6
+R1 net3 Von GND ppolyf_u_1k r_width=2e-6 r_length=1.85e-6
+R2 net9 CM_neg GND ppolyf_u_1k r_width=1e-6 r_length=50e-6
+R3 net10 CM_neg GND ppolyf_u_1k r_width=1e-6 r_length=50e-6
+R5 net11 GND GND ppolyf_u_1k r_width=1e-6 r_length=50e-6
+C3 net4 1b cap_mim_2f0fF c_width=60e-6 c_length=66e-6 m=2
+C2 1a net3 cap_mim_2f0fF c_width=60e-6 c_length=66e-6 m=2
+M14 VDD_3V3 1b 2b GND nfet_03v3 L=1u W=4u nf=1
+M17 2b net1 GND GND nfet_03v3 L=1u W=4u nf=1
+M27 5 5 net1 GND nfet_03v3 L=1u W=4u nf=1
+M21 5 5 VDD_3V3 VDD_3V3 pfet_03v3 L=1u W=4u nf=1
+M9 GND net1 2a GND nfet_03v3 L=1u W=4u nf=1
+M13 2a 1a VDD_3V3 GND nfet_03v3 L=1u W=4u nf=1
+M30 net1 Gbias_20u_n GND GND nfet_03v3 L=0.7u W=7u nf=1
+M34 CM_pos Gbias_20u_n GND GND nfet_03v3 L=0.70u W=3.3u nf=1
+M36 7 Gbias_20u_n GND GND nfet_03v3 L=0.70u W=3.3u nf=1
+M37 8 Gbias_20u_n GND GND nfet_03v3 L=0.70u W=3.3u nf=1
+R6 net8 Gbias_20u_p GND ppolyf_u_1k r_width=2e-6 r_length=29.2e-6
+R12 net7 net8 GND ppolyf_u_1k r_width=2e-6 r_length=29.2e-6
+R13 net6 net7 GND ppolyf_u_1k r_width=2e-6 r_length=29.2e-6
+R14 net5 net6 GND ppolyf_u_1k r_width=2e-6 r_length=29.2e-6
+R15 Gbias_20u_n net5 GND ppolyf_u_1k r_width=2e-6 r_length=29.2e-6
+R10 7 net9 GND ppolyf_u_1k r_width=1e-6 r_length=50e-6
+R11 8 net10 GND ppolyf_u_1k r_width=1e-6 r_length=50e-6
+R9 CM net11 GND ppolyf_u_1k r_width=1e-6 r_length=50e-6
+M35 CM CM VDD_3V3 VDD_3V3 pfet_03v3 L=2.0u W=3.2u nf=1
 R7 GND GND GND ppolyf_u_1k r_width=1e-6 r_length=50e-6
 R8 GND GND GND ppolyf_u_1k r_width=1e-6 r_length=50e-6
 R16 GND GND GND ppolyf_u_1k r_width=1e-6 r_length=50e-6
-.ends fdda_top
-
+.ends
 *.GLOBAL GND
 *.GLOBAL VDD_3V3
