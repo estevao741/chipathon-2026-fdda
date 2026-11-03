@@ -24,6 +24,8 @@ project:
   drc_ready: true    # data ready for integration and DRC
   lvs_ready: true    # data ready for integrated LVS
 
+  export_control: "docs/Export_Control_GF_Rev8.2_A64.docx"   # Required export control document
+
 pins:
 # Design block: D - 5 pins on the bottom and 5 pins on the left
 # Pins defined in clockwise direction
